@@ -1,13 +1,8 @@
-from aws_cdk import (
-    Duration,
-    Stack,
-
-    
-)
-from aws_cdk.aws_lambda import Function, Code, Runtime
+from aws_cdk import Stack
+from aws_cdk.aws_lambda import Function, Code, Runtime, CfnPermission
 from constructs import Construct
 from aws_cdk_proj.crud import crud_root
-
+from aws_cdk_proj.base_function import BaseFunction
 
 
 class CrudStack(Stack):
@@ -19,42 +14,35 @@ class CrudStack(Stack):
 
       
         # create
-        Function(
+        self.create = BaseFunction(
             scope=self,
             id='CreateFunction',
             function_name='CreateFunction',
             code=Code.from_asset(f'{crud_root}/create'),
-            runtime=Runtime.PYTHON_3_9,
-            handler='index.handler'
         )
         
         # delete
-        Function(
+        self.delete = BaseFunction(
             scope=self,
             id='DeleteFunction',
             function_name='DeleteFunction',
             code=Code.from_asset(f'{crud_root}/delete'),
-            runtime=Runtime.PYTHON_3_9,
-            handler='index.handler'
         )
 
+
         # read
-        Function(
+        self.read = BaseFunction(
             scope=self,
             id='ReadFunction',
             function_name='ReadFunction',
             code=Code.from_asset(f'{crud_root}/read'),
-            runtime=Runtime.PYTHON_3_9,
-            handler='index.handler'
         )
 
         # update
-        Function(
+        self.update = BaseFunction(
             scope=self,
             id='UpdateFunction',
             function_name='UpdateFunction',
             code=Code.from_asset(f'{crud_root}/update'),
-            runtime=Runtime.PYTHON_3_9,
-            handler='index.handler'
         )
 

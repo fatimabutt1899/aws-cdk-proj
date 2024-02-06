@@ -1,2 +1,4 @@
 aws-cdk-lib==2.125.0
 constructs>=10.0.0,<11.0.0
+b-cfn-api-v2==5.0.0
+b-cfn-custom-api-key-authorizer==3.0.0 
